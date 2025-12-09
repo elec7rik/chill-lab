@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react'
 import './App.css'
 import WalletHeader from './WalletHeader'
@@ -61,7 +60,7 @@ function App() {
             })
           }} />
           <TokenRow symbol={t.symbol} amount={t.amount} price={prices[t.symbol]}/>
-          {/* <div>${t.amount * prices[t.symbol]}</div> */}
+          {/* { <div>${t.amount * prices[t.symbol]}</div>} */}
         </div>
       ))
     }
