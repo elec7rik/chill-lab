@@ -59,6 +59,7 @@ function TaskManager({session}: {session: Session}) {
     const { error } = await supabase
         .from("tasks")
         .insert({...newTask, email: session.user.email})
+        .select()
         .single();
 
     if (error) {
@@ -67,12 +68,39 @@ function TaskManager({session}: {session: Session}) {
     }
 
     setNewTask({ title: "", description: "" });
-    fetchTasks();
   };
 
   useEffect(() => {
     fetchTasks();
+  }, [newTask]);
+
+  // subscription
+  useEffect(() => {
+    const channel = supabase
+      .channel("tasks-channel")
+      .on(
+        "postgres_changes",
+        {
+          event: "INSERT",
+          schema: "public",
+          table: "tasks",
+        },
+        (payload) => {
+          const newTask = payload.new as Task;
+          setTasks((prev) => [...prev, newTask]);
+        }
+      )
+      .subscribe((status) => {
+        console.log("Realtime status:", status);
+      });
+
+    // to fix CHANNEL_ERROR
+    return () => {
+      supabase.removeChannel(channel);
+    };
   }, []);
+
+  console.log(tasks);
 
   return (
     <div style={{ maxWidth: "600px", margin: "0 auto", padding: "1rem" }}>
