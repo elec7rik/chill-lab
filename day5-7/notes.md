@@ -3,7 +3,7 @@
 - supabase tasks table connected
 - components and auth logic seperated 
 - supabase auth implemented
-- supabase subscription added (for INSERT)
+- supabase subscription added (for INSERT, UPDATE & DELETE)
 
 ## to-remember
 - i made the email column non-unique

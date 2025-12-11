@@ -90,6 +90,35 @@ function TaskManager({session}: {session: Session}) {
           setTasks((prev) => [...prev, newTask]);
         }
       )
+      .on(
+        "postgres_changes",
+        {
+          event: "UPDATE",
+          schema: "public",
+          table: "tasks",
+        },
+        (payload) => {
+          const updatedTask = payload.new as Task;
+          setTasks((prev) => 
+            prev.map((task) => 
+                task.id === updatedTask.id ? updatedTask : task
+        ));
+        }
+      )
+      .on(
+        "postgres_changes",
+        {
+          event: "DELETE",
+          schema: "public",
+          table: "tasks",
+        },
+        (payload) => {
+          const deletedTask = payload.old as Task;
+          setTasks((prev) =>
+            prev.filter((task) => task.id !== deletedTask.id)
+            );
+        }
+      )
       .subscribe((status) => {
         console.log("Realtime status:", status);
       });
