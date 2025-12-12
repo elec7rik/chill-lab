@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ChangeEvent } from "react";
 import { supabase } from "../supabase-client";
 import type { Session } from "@supabase/supabase-js";
 
@@ -7,12 +7,15 @@ interface Task {
   title: string;
   description: string;
   created_at: string;
+  image_url: string;
 }
 
 function TaskManager({session}: {session: Session}) {
   const [newTask, setNewTask] = useState({ title: "", description: "" });
   const [tasks, setTasks] = useState<Task[]>([]);
   const [newDescription, setNewDescription] = useState("");
+
+  const [ taskImage, setTaskImage ] = useState<File | null>(null);
 
   const fetchTasks = async () => {
     const { error, data } = await supabase
@@ -53,12 +56,32 @@ function TaskManager({session}: {session: Session}) {
     fetchTasks();
   };
 
+  const uploadImage = async(file: File) : Promise<string | null> => {
+     const filePath = `${file.name}-${Date.now()}`
+
+     const {error} = await supabase.storage.from("tasks-images").upload(filePath, file);
+
+     if (error) {
+        console.error("Error uploading image: ", error.message);
+        return null;
+     }
+
+     const {data} = await supabase.storage.from("tasks-images").getPublicUrl(filePath);
+
+    return data.publicUrl;
+  }
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
+    let imageUrl: string | null = null;
+    if (taskImage) {
+        imageUrl = await uploadImage(taskImage)
+    }
+
     const { error } = await supabase
         .from("tasks")
-        .insert({...newTask, email: session.user.email})
+        .insert({...newTask, email: session.user.email, image_url: imageUrl})
         .select()
         .single();
 
@@ -68,6 +91,12 @@ function TaskManager({session}: {session: Session}) {
     }
 
     setNewTask({ title: "", description: "" });
+  };
+
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+        setTaskImage(e.target.files[0]);
+    }
   };
 
   useEffect(() => {
@@ -151,6 +180,9 @@ function TaskManager({session}: {session: Session}) {
           }
           style={{ width: "100%", marginBottom: "0.5rem", padding: "0.5rem" }}
         />
+
+        <input type="file" accept="image/*" onChange={handleFileChange}/>
+
         <button type="submit" style={{ padding: "0.5rem 1rem" }}>
           Add Task
         </button>
@@ -169,6 +201,7 @@ function TaskManager({session}: {session: Session}) {
           >
             <h3>{task.title}</h3>
             <p>{task.description}</p>
+            <img src={task.image_url} style={{height : 70}} />
 
             <textarea
               placeholder="Updated description..."

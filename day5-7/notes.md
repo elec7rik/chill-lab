@@ -4,10 +4,11 @@
 - components and auth logic seperated 
 - supabase auth implemented
 - supabase subscription added (for INSERT, UPDATE & DELETE)
+- supabase storage implemented for images
 
 ## to-remember
 - i made the email column non-unique
 - (else the users wouldn't be able to create multiple tasks)
 
 ## next todos
-- add supabase file storage
+- polish ui and add more functionality
