@@ -6,6 +6,7 @@
 - [x] add cooldown checks  
 - [x] add daily/total limit checks  
 - [x] add checks for vault balance before sending sol  
+- [x] split code into modules
 - [ ] build basic anchor tests for both instructions  
 - [ ] deploy program to devnet and note the program id  
 - [ ] fund the vault pda manually for the first run  
