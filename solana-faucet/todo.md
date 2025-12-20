@@ -7,10 +7,13 @@
 - [x] add daily/total limit checks  
 - [x] add checks for vault balance before sending sol  
 - [x] split code into modules
-- [ ] build basic anchor tests for both instructions  
+- [ ] build basic anchor tests for both instructions
 - [ ] deploy program to devnet and note the program id  
 - [ ] fund the vault pda manually for the first run  
 - [ ] start ui work: connect wallet and call `request_airdrop`  
 - [ ] create a simple off-chain script to top up the vault regularly  
 - [ ] add docs explaining how the faucet works and how to fund the vault  
 
+## note
+- request_airdrop() test not working
+- gitshould VaultState be a type or should i just go with SystemAccount?
