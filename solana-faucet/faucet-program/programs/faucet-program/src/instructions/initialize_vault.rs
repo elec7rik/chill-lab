@@ -28,9 +28,9 @@ pub fn initialize_vault(ctx: Context<InitializeVault>) -> Result<()> {
         let lamports = rent.minimum_balance(0);
 
         let seeds: &[&[u8]] = &[
-            b"vault".as_ref(),
-            &[ctx.bumps.vault],
-        ];
+        b"vault".as_ref(),
+        &[ctx.bumps.vault],
+    ];
 
         let signer_seeds = &[seeds];
 
