@@ -21,7 +21,8 @@ pub struct RequestAirdrop<'info> {
         seeds = [b"vault"],
         bump
     )]
-    pub vault: Account<'info, VaultState>,
+    // pub vault: Account<'info, VaultState>,
+    pub vault: SystemAccount<'info>,
     pub system_program: Program<'info, System>,
 }
 
