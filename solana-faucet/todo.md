@@ -18,14 +18,14 @@
 
 # Faucet UI TODO
 
-- [ ] Install Tailwind CSS
-- [ ] Initialize shadcn/ui
+- [x] Install Tailwind CSS
+- [x] Initialize shadcn/ui
 - [ ] Centered page layout
 - [ ] Show title and short description
 - [ ] Faucet card container
 - [ ] Wallet connection status
 - [ ] Shortened public key display
-- [ ] "Request SOL" button
+- [x] "Request SOL" button
 - [ ] Disable button while tx is pending
 - [ ] Show success or error message
 

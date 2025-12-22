@@ -12,13 +12,13 @@
 // export default App;
 
 
+import { Button } from "@/components/ui/button";
+
 function App() {
   return (
-    <div className="h-screen w-screen flex items-center justify-center bg-black text-white text-xl">
-  Tailwind v4 is working
-</div>
-
-
+    <div className="h-screen w-screen flex items-center justify-center bg-background">
+      <Button>Request SOL</Button>
+    </div>
   );
 }
 
