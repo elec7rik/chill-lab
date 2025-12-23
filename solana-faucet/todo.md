@@ -31,5 +31,5 @@
 
 
 ## note
-- request_airdrop() test not working
-- gitshould VaultState be a type or should i just go with SystemAccount?
+- request_airdrop() test not working - FIXED
+- gitshould VaultState be a type or should i just go with SystemAccount - FIXED
