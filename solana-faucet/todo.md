@@ -23,8 +23,8 @@
 - [x] Centered page layout
 - [x] Show title and short description
 - [x] Faucet card container
-- [ ] Wallet connection status
-- [ ] Shortened public key display
+- [x] Wallet connection status
+- [x] Shortened public key display
 - [x] "Request SOL" button
 - [ ] Disable button while tx is pending
 - [ ] Show success or error message
