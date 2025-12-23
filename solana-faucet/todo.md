@@ -20,9 +20,9 @@
 
 - [x] Install Tailwind CSS
 - [x] Initialize shadcn/ui
-- [ ] Centered page layout
-- [ ] Show title and short description
-- [ ] Faucet card container
+- [x] Centered page layout
+- [x] Show title and short description
+- [x] Faucet card container
 - [ ] Wallet connection status
 - [ ] Shortened public key display
 - [x] "Request SOL" button
