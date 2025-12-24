@@ -8,15 +8,13 @@
 - [x] add checks for vault balance before sending sol  
 - [x] split code into modules
 - [x] build basic anchor tests for both instructions
-- [ ] deploy program to devnet and note the program id  
-- [ ] fund the vault pda manually for the first run  
-- [ ] start ui work: connect wallet and call `request_airdrop`  
+- [x] deploy program to devnet and note the program id - 2iKADw5KnvSbSBmxZYsozTjjPWNMoYnHXecwwMjptXcz
+- [x] fund the vault pda manually for the first run  
+- [x] start ui work: connect wallet and call `request_airdrop`  
 - [ ] create a simple off-chain script to top up the vault regularly  
 - [ ] add docs explaining how the faucet works and how to fund the vault  
 
 # todo - ui
-
-# Faucet UI TODO
 
 - [x] Install Tailwind CSS
 - [x] Initialize shadcn/ui
