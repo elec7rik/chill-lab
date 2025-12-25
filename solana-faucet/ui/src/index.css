@@ -15,7 +15,7 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
+  /* color-scheme: light dark; */
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
 
@@ -167,7 +167,7 @@ button:focus-visible {
   --muted-foreground: oklch(0.704 0.04 256.788);
   --accent: oklch(0.279 0.041 260.031);
   --accent-foreground: oklch(0.984 0.003 247.858);
-  --destructive: oklch(0.704 0.191 22.216);
+  --destructive: oklch(31.642% 0.04209 17.344);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.551 0.027 264.364);
@@ -186,11 +186,11 @@ button:focus-visible {
   --sidebar-ring: oklch(0.551 0.027 264.364);
 }
 
-@layer base {
+/* @layer base {
   * {
     @apply border-border outline-ring/50;
   }
   body {
     @apply bg-background text-foreground;
   }
-}
+} */

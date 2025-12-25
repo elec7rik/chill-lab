@@ -1,14 +1,3 @@
-// import { StrictMode } from 'react'
-// import { createRoot } from 'react-dom/client'
-// import './index.css'
-// import App from './App.tsx'
-
-// createRoot(document.getElementById('root')!).render(
-//   <StrictMode>
-//     <App />
-//   </StrictMode>,
-// )
-
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
@@ -34,12 +23,15 @@ const wallets = [
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <ConnectionProvider endpoint={endpoint}>
-      <WalletProvider wallets={wallets} autoConnect>
-        <WalletModalProvider>
-          <App />
-        </WalletModalProvider>
-      </WalletProvider>
-    </ConnectionProvider>
+    <div className="dark">
+      <ConnectionProvider endpoint={endpoint}>
+        <WalletProvider wallets={wallets} autoConnect>
+          <WalletModalProvider>
+            <App />
+          </WalletModalProvider>
+        </WalletProvider>
+      </ConnectionProvider>
+    </div>
   </React.StrictMode>
 );
+
