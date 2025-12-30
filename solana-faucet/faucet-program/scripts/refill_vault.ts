@@ -25,10 +25,12 @@ const PROGRAM_ID = new PublicKey(
 );
 
 // Vault PDA
-const [VAULT_PDA] = PublicKey.findProgramAddressSync(
+const [vaultPda] = PublicKey.findProgramAddressSync(
   [Buffer.from("vault")],
   PROGRAM_ID
 );
+
+// console.log(vaultPda);
 
 // Load funder keypairs
 function loadKeypair(filename: string): Keypair {
@@ -41,9 +43,9 @@ async function refill() {
   const connection = new Connection(RPC_URL, "confirmed");
 
   const funders = [
-    // loadKeypair("funder1.json"),
+    loadKeypair("funder1.json"),
     // loadKeypair("funder2.json"),
-    loadKeypair("funder3.json"),
+    // loadKeypair("funder3.json"),
   ];
 
   for (const funder of funders) {
@@ -54,14 +56,23 @@ async function refill() {
       funder.publicKey,
       AIRDROP_AMOUNT
     );
-    await connection.confirmTransaction(sig, "confirmed");
+    const latestBlockhash = await connection.getLatestBlockhash();
+
+    await connection.confirmTransaction(
+    {
+        signature: sig,
+        blockhash: latestBlockhash.blockhash,
+        lastValidBlockHeight: latestBlockhash.lastValidBlockHeight,
+    },
+    "confirmed"
+    );
 
     await sleep(3000); // give devnet time to breathe
 
     const tx = new Transaction().add(
       SystemProgram.transfer({
         fromPubkey: funder.publicKey,
-        toPubkey: VAULT_PDA,
+        toPubkey: vaultPda,
         lamports: AIRDROP_AMOUNT - 5_000,
       })
     );
@@ -69,6 +80,7 @@ async function refill() {
     await sendAndConfirmTransaction(connection, tx, [funder]);
 
     console.log("Transferred SOL to vault");
+    await logVaultBalance(connection, vaultPda);
   } catch (err) {
     console.warn(
       "Skipping funder due to faucet error:",
@@ -84,3 +96,10 @@ async function refill() {
 }
 
 refill().catch(console.error);
+
+async function logVaultBalance(connection: Connection, vault: PublicKey) {
+  const lamports = await connection.getBalance(vault);
+  console.log(
+    `Vault balance: ${(lamports / LAMPORTS_PER_SOL).toFixed(4)} SOL`
+  );
+}
