@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardAction,
@@ -15,7 +16,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -24,6 +24,19 @@ import {
   DropdownMenuContent,
 } from "@/components/ui/dropdown-menu";
 import { MoreHorizontal } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogClose,
+  DialogFooter,
+} from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 
 const posts = [
   {
@@ -62,7 +75,24 @@ export default function AdminPostsPage() {
       <CardHeader>
         <CardTitle>Posts</CardTitle>
         <CardAction>
-          <Button>New Post</Button>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button>New Post</Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-2xl space-y-2">
+              <DialogHeader>
+                <DialogTitle>Create Post</DialogTitle>
+              </DialogHeader>
+              <Input placeholder="Star Wars: The Lost Star"></Input>
+              <Textarea placeholder="Long before there was any light..."></Textarea>
+              <DialogFooter>
+                <DialogClose asChild>
+                  <Button variant="outline">Cancel</Button>
+                </DialogClose>
+                <Button type="submit">Save changes</Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
         </CardAction>
       </CardHeader>
       <CardContent>
