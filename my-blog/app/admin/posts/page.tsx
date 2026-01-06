@@ -37,37 +37,7 @@ import {
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-
-const posts = [
-  {
-    post: "P1",
-    title: "Reflections on the Practicality of Martingale Strategy",
-    status: "drafted",
-    category: "Math",
-    remarks: "add images",
-  },
-  {
-    post: "P2",
-    title: "Hexagon is the Bestagon",
-    status: "drafted",
-    category: "Math",
-    remarks: "none",
-  },
-  {
-    post: "P3",
-    title: "What makes Git lightning fast?",
-    status: "drafted",
-    category: "Tech",
-    remarks: "write more about hashing",
-  },
-  {
-    post: "P4",
-    title: "shadcn is AWESOME",
-    status: "todo",
-    category: "UI",
-    remarks: "none",
-  },
-];
+import { posts } from "@/lib/posts";
 
 export default function AdminPostsPage() {
   return (
@@ -99,7 +69,7 @@ export default function AdminPostsPage() {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Post</TableHead>
+              <TableHead>ID</TableHead>
               <TableHead>Title</TableHead>
               <TableHead>Status</TableHead>
               <TableHead>Category</TableHead>
@@ -109,8 +79,8 @@ export default function AdminPostsPage() {
           </TableHeader>
           <TableBody>
             {posts.map((post) => (
-              <TableRow key={post.post}>
-                <TableCell>{post.post}</TableCell>
+              <TableRow key={post.id}>
+                <TableCell>{post.id}</TableCell>
                 <TableCell className="font-medium">{post.title}</TableCell>
                 <TableCell>{post.status}</TableCell>
                 <TableCell>{post.category}</TableCell>

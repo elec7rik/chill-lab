@@ -21,7 +21,6 @@ export default function New() {
       </div>
       <Card>
         <CardHeader>
-          {/* <CardTitle>Post Editor</CardTitle> */}
           <Input placeholder="Banger title"></Input>
         </CardHeader>
         <CardContent>
