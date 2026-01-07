@@ -1,4 +1,5 @@
 "use client";
+import { supabase } from "@/lib/supabase/client";
 import PostEditor from "../_components/post-editor";
 import { useRouter } from "next/navigation";
 
@@ -10,8 +11,17 @@ export default function NewPostClient() {
       initialContent=""
       heading="New Post"
       primaryActionLabel="Save"
-      onSubmit={(data) => {
-        console.log("Create Post", data);
+      onSubmit={async (data) => {
+        // console.log("Create Post", data);
+        const { error } = await supabase.from("posts").insert({
+          title: data.title,
+          content: data.content,
+          status: "draft",
+        });
+        if (error) {
+          console.error("Insert Failed: ", error);
+          return;
+        }
         router.push("/admin/posts");
       }}
     />

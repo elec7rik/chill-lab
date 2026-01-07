@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -22,30 +22,29 @@ import {
   DropdownMenuContent,
 } from "@/components/ui/dropdown-menu";
 import { MoreHorizontal } from "lucide-react";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-  DialogClose,
-  DialogFooter,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { posts } from "@/lib/posts";
-import { useRouter } from "next/navigation";
+// import { posts } from "@/lib/posts";
+// import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { supabase } from "@/lib/supabase/client";
 
-export default function AdminPostsPage() {
-  const router = useRouter();
+export default async function AdminPostsPage() {
+  const { data: posts, error } = await supabase
+    .from("posts")
+    .select("*")
+    .order("created_at", { ascending: false });
+  if (error) {
+    console.error("Post Fetching Failed: ", error);
+    return;
+  }
+  // const router = useRouter();
   return (
     <Card>
       <CardHeader>
         <CardTitle>Posts</CardTitle>
         <CardAction>
-          <Button onClick={() => router.push("/admin/posts/new")}>
-            New Post
-          </Button>
+          <Link href={`/admin/posts/new`}>
+            <Button variant="ghost">Create Post</Button>
+          </Link>
         </CardAction>
       </CardHeader>
       <CardContent>
@@ -61,7 +60,7 @@ export default function AdminPostsPage() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {posts.map((post) => (
+            {posts?.map((post) => (
               <TableRow key={post.id}>
                 <TableCell>{post.id}</TableCell>
                 <TableCell className="font-medium">{post.title}</TableCell>
@@ -72,7 +71,7 @@ export default function AdminPostsPage() {
                   <div>
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" size="icon">
+                        <Button variant="outline" size="icon">
                           <MoreHorizontal />
                         </Button>
                       </DropdownMenuTrigger>
