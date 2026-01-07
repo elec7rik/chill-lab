@@ -1,12 +1,5 @@
-import PostEditor from "../_components/post-editor";
+import NewPostClient from "./new-client";
 
-export default async function NewPostPage() {
-  return (
-    <PostEditor
-      initialTitle=""
-      initialContent=""
-      heading="New Post"
-      primaryActionLabel="Save"
-    />
-  );
+export default function NewPostPage() {
+  return <NewPostClient/>;
 }

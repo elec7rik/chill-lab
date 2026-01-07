@@ -11,11 +11,13 @@ export default function PostEditor({
   initialContent,
   heading,
   primaryActionLabel,
+  onSubmit,
 }: {
   initialTitle: string;
   initialContent: string;
   heading: string;
   primaryActionLabel: string;
+  onSubmit: (data: { title: string; content: string }) => void;
 }) {
   const [title, setTitle] = useState(initialTitle);
   const [content, setContent] = useState(initialContent);
@@ -26,7 +28,9 @@ export default function PostEditor({
         <h1 className="text-2xl font-semibold">{heading}</h1>
         <div className="flex gap-2">
           <Button variant="outline">Cancel</Button>
-          <Button>{primaryActionLabel}</Button>
+          <Button onClick={() => onSubmit({ title, content })}>
+            {primaryActionLabel}
+          </Button>
         </div>
       </div>
 

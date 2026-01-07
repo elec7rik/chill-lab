@@ -1,5 +1,5 @@
 import { posts } from "@/lib/posts";
-import PostEditor from "../_components/post-editor";
+import EditPostClient from "./edit-client";
 
 export default async function EditPostPage({
   params,
@@ -13,12 +13,5 @@ export default async function EditPostPage({
     return <p>Post not found</p>;
   }
 
-  return (
-    <PostEditor
-      initialTitle={post.title}
-      initialContent={post.remarks}
-      heading="Edit Post"
-      primaryActionLabel="Update"
-    />
-  );
+  return <EditPostClient post={post} />;
 }
