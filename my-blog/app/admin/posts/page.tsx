@@ -26,6 +26,7 @@ import { MoreHorizontal } from "lucide-react";
 // import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase/client";
+import DeletePostAction from "./_components/delete-post-action";
 
 export default async function AdminPostsPage() {
   const { data: posts, error } = await supabase
@@ -82,8 +83,10 @@ export default async function AdminPostsPage() {
                         sideOffset={4}
                       >
                         <DropdownMenuItem>View</DropdownMenuItem>
-                        <DropdownMenuItem>Edit</DropdownMenuItem>
-                        <DropdownMenuItem>Delete</DropdownMenuItem>
+                        <DropdownMenuItem asChild>
+                          <Link href={`/admin/posts/${post.id}`}>Edit</Link>
+                        </DropdownMenuItem>
+                        <DeletePostAction id={post.id} />
                         <DropdownMenuItem>Hide</DropdownMenuItem>
                       </DropdownMenuContent>
                     </DropdownMenu>

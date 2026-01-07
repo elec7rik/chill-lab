@@ -39,7 +39,9 @@ export default function PostEditor({
         <h1 className="text-2xl font-semibold">{heading}</h1>
         <div className="flex gap-2">
           <Button variant="outline">Cancel</Button>
-          <Button onClick={() => onSubmit({ title, content, remarks, category })}>
+          <Button
+            onClick={() => onSubmit({ title, content, remarks, category })}
+          >
             {primaryActionLabel}
           </Button>
         </div>
