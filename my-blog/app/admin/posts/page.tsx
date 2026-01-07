@@ -99,7 +99,7 @@ export default function AdminPostsPage() {
                         side="bottom"
                         sideOffset={4}
                       >
-                        <DropdownMenuLabel>View</DropdownMenuLabel>
+                        <DropdownMenuItem>View</DropdownMenuItem>
                         <DropdownMenuItem>Edit</DropdownMenuItem>
                         <DropdownMenuItem>Delete</DropdownMenuItem>
                         <DropdownMenuItem>Hide</DropdownMenuItem>
