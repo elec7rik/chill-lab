@@ -1,4 +1,6 @@
 "use client";
+
+import { useRouter } from "next/navigation";
 import PostEditor from "../_components/post-editor";
 
 export default function EditPostClient({
@@ -6,6 +8,7 @@ export default function EditPostClient({
 }: {
   post: { id: string; title: string; remarks: string };
 }) {
+  const router = useRouter();
   return (
     <PostEditor
       initialTitle={post.title}
@@ -14,6 +17,7 @@ export default function EditPostClient({
       primaryActionLabel="Update"
       onSubmit={(data) => {
         console.log("Update Post", post.id, data);
+        router.push("/admin/posts/");
       }}
     />
   );
