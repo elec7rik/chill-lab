@@ -5,6 +5,7 @@ import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
 export default function PostEditor({
   initialTitle,
@@ -32,13 +33,14 @@ export default function PostEditor({
   const [content, setContent] = useState(initialContent);
   const [remarks, setRemarks] = useState(initialRemarks);
   const [category, setCategory] = useState(initialCategory);
+  const router = useRouter();
 
   return (
     <div className="flex flex-col gap-4">
       <div className="flex justify-between items-center p-4">
         <h1 className="text-2xl font-semibold">{heading}</h1>
         <div className="flex gap-2">
-          <Button variant="outline">Cancel</Button>
+          <Button variant="outline" type="button" onClick={() => router.back()}>Cancel</Button>
           <Button
             onClick={() => onSubmit({ title, content, remarks, category })}
           >

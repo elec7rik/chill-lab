@@ -19,7 +19,6 @@ export default function EditPostClient({
       heading="Edit Post"
       primaryActionLabel="Update"
       onSubmit={async (data) => {
-        // console.log("Update Post", post.id, data);
         const { error } = await supabase
           .from("posts")
           .update({

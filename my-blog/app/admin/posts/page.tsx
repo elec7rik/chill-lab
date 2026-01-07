@@ -1,4 +1,3 @@
-// "use client";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -22,8 +21,6 @@ import {
   DropdownMenuContent,
 } from "@/components/ui/dropdown-menu";
 import { MoreHorizontal } from "lucide-react";
-// import { posts } from "@/lib/posts";
-// import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase/client";
 import DeletePostAction from "./_components/delete-post-action";
@@ -37,7 +34,6 @@ export default async function AdminPostsPage() {
     console.error("Post Fetching Failed: ", error);
     return;
   }
-  // const router = useRouter();
   return (
     <Card>
       <CardHeader>
