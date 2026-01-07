@@ -4,4 +4,5 @@ export type Post = {
   content: string;
   remarks: string | null;
   status: string;
+  category: string;
 };

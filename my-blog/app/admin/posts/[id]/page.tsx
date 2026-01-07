@@ -12,7 +12,7 @@ export default async function EditPostPage({
   // const post = posts.find((p) => p.id === id);
   const { data: post } = await supabase
   .from("posts")
-  .select("id, title, content, remarks")
+  .select("id, title, content, remarks, category")
   .eq("id", id)
   .single<Post>();
 

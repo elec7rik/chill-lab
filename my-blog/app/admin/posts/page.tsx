@@ -43,7 +43,7 @@ export default async function AdminPostsPage() {
         <CardTitle>Posts</CardTitle>
         <CardAction>
           <Link href={`/admin/posts/new`}>
-            <Button variant="ghost">Create Post</Button>
+            <Button variant="default">Create Post</Button>
           </Link>
         </CardAction>
       </CardHeader>

@@ -9,6 +9,8 @@ import { Button } from "@/components/ui/button";
 export default function PostEditor({
   initialTitle,
   initialContent,
+  initialRemarks,
+  initialCategory,
   heading,
   primaryActionLabel,
   onSubmit,
@@ -17,10 +19,19 @@ export default function PostEditor({
   initialContent: string;
   heading: string;
   primaryActionLabel: string;
-  onSubmit: (data: { title: string; content: string }) => void;
+  initialRemarks: string;
+  initialCategory: string;
+  onSubmit: (data: {
+    title: string;
+    content: string;
+    remarks: string;
+    category: string;
+  }) => void;
 }) {
   const [title, setTitle] = useState(initialTitle);
   const [content, setContent] = useState(initialContent);
+  const [remarks, setRemarks] = useState(initialRemarks);
+  const [category, setCategory] = useState(initialCategory);
 
   return (
     <div className="flex flex-col gap-4">
@@ -28,7 +39,7 @@ export default function PostEditor({
         <h1 className="text-2xl font-semibold">{heading}</h1>
         <div className="flex gap-2">
           <Button variant="outline">Cancel</Button>
-          <Button onClick={() => onSubmit({ title, content })}>
+          <Button onClick={() => onSubmit({ title, content, remarks, category })}>
             {primaryActionLabel}
           </Button>
         </div>
@@ -36,13 +47,30 @@ export default function PostEditor({
 
       <Card>
         <CardHeader>
-          <Input value={title} onChange={(e) => setTitle(e.target.value)} />
+          <Input
+            value={title}
+            placeholder="title"
+            onChange={(e) => setTitle(e.target.value)}
+          />
         </CardHeader>
-        <CardContent>
+        <CardContent className="flex flex-col gap-4">
+          <Input
+            value={category}
+            placeholder="category"
+            onChange={(e) => setCategory(e.target.value)}
+          />
+
           <Textarea
             value={content}
+            placeholder="content"
             onChange={(e) => setContent(e.target.value)}
-            className="min-h-[600px]"
+            className="min-h-[500px]"
+          />
+          <Textarea
+            value={remarks}
+            placeholder="remarks"
+            onChange={(e) => setRemarks(e.target.value)}
+            className="min-h-[60px]"
           />
         </CardContent>
       </Card>

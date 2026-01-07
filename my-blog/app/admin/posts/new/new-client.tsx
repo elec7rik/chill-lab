@@ -9,6 +9,8 @@ export default function NewPostClient() {
     <PostEditor
       initialTitle=""
       initialContent=""
+      initialRemarks=""
+      initialCategory=""
       heading="New Post"
       primaryActionLabel="Save"
       onSubmit={async (data) => {
@@ -16,7 +18,9 @@ export default function NewPostClient() {
         const { error } = await supabase.from("posts").insert({
           title: data.title,
           content: data.content,
+          remarks: data.remarks,
           status: "draft",
+          category: data.category,
         });
         if (error) {
           console.error("Insert Failed: ", error);
