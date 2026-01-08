@@ -14,7 +14,6 @@ export default function NewPostClient() {
       heading="New Post"
       primaryActionLabel="Save"
       onSubmit={async (data) => {
-        // console.log("Create Post", data);
         const { error } = await supabase.from("posts").insert({
           title: data.title,
           content: data.content,
