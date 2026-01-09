@@ -1,5 +1,6 @@
 import { supabase } from "@/lib/supabase/client";
 import Link from "next/link";
+import { ModeToggle } from "@/components/ui/mode-toggle";
 
 export default async function BlogPage() {
   const { data: posts, error } = await supabase
@@ -11,14 +12,26 @@ export default async function BlogPage() {
     console.error("Post Fetching Failed: ", error.message);
   }
   return (
-    <div>
-      <h1>Blog</h1>
+    <div className="max-w-3xl mx-auto px-4 py-16">
+      <div className="flex  justify-between items-center mb-12">
+        <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl">
+        <span className="text-red-400 dark:text-red-500">fed</span>
+        <span className="opacity-80">'s blog ;3</span>
+      </h1>
+      <ModeToggle></ModeToggle>
+      </div>
+
       {posts!.map((post) => (
-        <div key={post.id}>
+        <div key={post.id} className="mb-8 pb-8 border-b border-zinc-200 dark:border-zinc-800 last:border-b-0">
           <Link href={`/blog/${post.id}`}>
-          <h2>{post.title}</h2>
+            <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight hover:text-foreground/80 leading-tight
+">
+              {post.title}
+            </h2>
           </Link>
-          <p>{post.category}</p>
+          <p className="text-xs uppercase tracking-wide text-muted-foreground">
+            {post.category}
+          </p>
         </div>
       ))}
     </div>
