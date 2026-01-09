@@ -18,9 +18,20 @@ export default async function BlogViewPage({
   }
   return (
     <div className="max-w-3xl mx-auto px-4 py-16">
-      <p>{post.title}</p>
-      <p>{post.content}</p>
-      <p>{post.category}</p>
+      {/* Title */}
+      <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight leading-tight mb-3">
+        {post.title}
+      </h1>
+
+      {/* Meta */}
+      <div className="text-sm text-muted-foreground uppercase tracking-wide mb-10">
+        {post.category}
+      </div>
+
+      {/* Content */}
+      <div className="space-y-6 text-base leading-relaxed text-foreground whitespace-pre-line">
+        {post.content}
+      </div>
     </div>
   );
 }
