@@ -21,6 +21,7 @@ import {
   DropdownMenuContent,
 } from "@/components/ui/dropdown-menu";
 import { MoreHorizontal } from "lucide-react";
+import PostActions from "./_components/post-actions";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase/client";
 import DeletePostAction from "./_components/delete-post-action";
@@ -84,6 +85,7 @@ export default async function AdminPostsPage() {
                         </DropdownMenuItem>
                         <DeletePostAction id={post.id} />
                         <DropdownMenuItem>Hide</DropdownMenuItem>
+                        <PostActions post={post} />
                       </DropdownMenuContent>
                     </DropdownMenu>
                   </div>
