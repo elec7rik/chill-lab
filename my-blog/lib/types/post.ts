@@ -5,4 +5,5 @@ export type Post = {
   remarks: string | null;
   status: string;
   category: string;
+  created_at: string;
 };

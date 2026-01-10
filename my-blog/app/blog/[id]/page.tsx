@@ -13,7 +13,7 @@ export default async function BlogViewPage({
   const { id } = await params;
   const { data: post } = await supabase
     .from("posts")
-    .select("title, content, category")
+    .select("title, content, category, created_at")
     .eq("id", id)
     .single<Post>();
 
@@ -22,6 +22,11 @@ export default async function BlogViewPage({
   }
   const words = post?.content.split(/\s+/).length;
   const readingTime = Math.max(1, Math.ceil(words / 200));
+  const createdAtFormatted = new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "2-digit",
+  }).format(new Date(post.created_at));
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-16">
@@ -48,6 +53,8 @@ export default async function BlogViewPage({
         <span>{post.category}</span>
         <span className="mx-2">·</span>
         <span>{readingTime} min read</span>
+        <span className="mx-2">·</span>
+        <span>{createdAtFormatted}</span>
       </div>
 
       {/* Content */}
