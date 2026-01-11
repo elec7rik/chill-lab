@@ -42,6 +42,7 @@ export default function LoginPage() {
   }
 
   return (
+    <div className="min-h-screen flex items-center justify-center">
     <Card className="w-full max-w-sm">
       <CardHeader>
         <CardTitle>Admin Login</CardTitle>
@@ -57,7 +58,7 @@ export default function LoginPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-            />
+              />
           </div>
 
           <div className="grid gap-2">
@@ -68,7 +69,7 @@ export default function LoginPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-            />
+              />
           </div>
 
           <Button type="submit" disabled={loading}>
@@ -79,5 +80,6 @@ export default function LoginPage() {
 
       <CardFooter />
     </Card>
+              </div>
   );
 }
