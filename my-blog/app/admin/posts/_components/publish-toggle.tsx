@@ -1,3 +1,5 @@
+"use client";
+
 import { Toggle } from "@/components/ui/toggle";
 import { ToggleRight } from "lucide-react";
 
@@ -15,16 +17,15 @@ export default function PublishToggle({
   return (
     <Toggle
       pressed={isPublished}
-      onPressedChange={(pressed) => {
-        const nextStatus = pressed ? "published" : "draft";
+      onPressedChange={() => {
+        const nextStatus = isPublished ? "draft" : "published";
         onPublish({ id, status: nextStatus });
       }}
       size="sm"
       variant="outline"
-      className="flex items-center gap-2"
     >
-      <ToggleRight className="h-4 w-4" />
-      {isPublished ? "Published" : "Draft"}
+      <ToggleRight className="mr-2 h-4 w-4" />
+      {isPublished ? "Unpublish" : "Publish"}
     </Toggle>
   );
 }

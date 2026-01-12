@@ -7,4 +7,6 @@ export type Post = {
   status: PostStatus;
   category: string;
   created_at: string;
+  published_at: string;
+  updated_at: string;
 };
