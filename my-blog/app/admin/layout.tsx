@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { createSupabaseServer } from "@/lib/supabase/server";
 import LogoutButton from "./posts/_components/logout-button";
+export const dynamic = "force-dynamic";
 
 export default async function AdminLayout({
   children,

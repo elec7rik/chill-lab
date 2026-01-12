@@ -1,5 +1,5 @@
 import EditPostClient from "./edit-client";
-import { supabase } from "@/lib/supabase/client";
+import { createSupabaseServer } from "@/lib/supabase/server";
 import type { Post } from "@/lib/types/post";
 
 export default async function EditPostPage({
@@ -7,6 +7,7 @@ export default async function EditPostPage({
 }: {
   params: Promise<{ id: string }>;
 }) {
+  const supabase = await createSupabaseServer();
   const { id } = await params;
   const { data: post } = await supabase
     .from("posts")

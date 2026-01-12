@@ -23,10 +23,11 @@ import {
 import { MoreHorizontal } from "lucide-react";
 import PostActions from "./_components/post-actions";
 import Link from "next/link";
-import { supabase } from "@/lib/supabase/client";
+import { createSupabaseServer } from "@/lib/supabase/server";
 import DeletePostAction from "./_components/delete-post-action";
 
 export default async function AdminPostsPage() {
+  const supabase = await createSupabaseServer();
   const { data: posts, error } = await supabase
     .from("posts")
     .select("*")

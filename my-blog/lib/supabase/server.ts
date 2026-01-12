@@ -1,11 +1,12 @@
 import { createServerClient } from "@supabase/ssr";
-import { cookies } from "next/headers";const supabase = await createSupabaseServer();
-const { data } = await supabase.auth.getUser();
+import { cookies } from "next/headers";
 
-console.log(data.user);
+// console.log(data.user);
 
 
 export async function createSupabaseServer() {
+    // const supabase = await createSupabaseServer();
+    // const { data } = await supabase.auth.getUser();
   const cookieStore = await cookies();
 
   return createServerClient(
