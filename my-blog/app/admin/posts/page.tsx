@@ -76,6 +76,7 @@ export default async function AdminPostsPage() {
                       </DropdownMenuTrigger>
 
                       <DropdownMenuContent
+                        className="bg-popover text-popover-foreground border shadow-md"
                         align="end"
                         side="bottom"
                         sideOffset={4}

@@ -27,7 +27,7 @@ export default function DeletePostAction({ id }: { id: string }) {
         </DropdownMenuItem>
       </DialogTrigger>
 
-      <DialogContent>
+      <DialogContent className="bg-popover text-popover-foreground border shadow-lg">
         <DialogHeader>
           <DialogTitle>Are you absolutely sure?</DialogTitle>
           <DialogDescription>
