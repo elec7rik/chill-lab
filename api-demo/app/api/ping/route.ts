@@ -1,11 +1,12 @@
 export async function GET(request: Request) {
   // data object
-  const data = { ok: "true" };
+  const data = [{ ok: true }, {clear: false}];
+  const dataString = JSON.stringify(data);
 
   return new Response(
     // http response expects text not object
     // that's why we stringify the data object
-    JSON.stringify(data),
+    dataString,
     {
       status: 200,
       // headers is an object of strings
